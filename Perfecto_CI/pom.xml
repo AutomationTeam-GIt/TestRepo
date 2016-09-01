@@ -2,12 +2,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>Group1</groupId>
-	<artifactId>Selenium_MavenProject</artifactId>
+	<groupId>CI_Project</groupId>
+	<artifactId>Perfecto_CI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>	
 
-	<name>Selenium_MavenProject</name>
+	<name>Perfecto_CI</name>
 	<url>http://maven.apache.org</url>
 
 	<build>
@@ -32,7 +32,7 @@
 				</configuration>
 			</plugin>
 	              
-	              <plugin>
+	         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jar-plugin</artifactId>
             <version>2.4</version>
