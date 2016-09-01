@@ -39,7 +39,7 @@
             <configuration>
                 <archive>
                     <manifest>
-                        <mainClass>RemoteWebDriverTest.Class</mainClass>
+                        <mainClass>CI_Project.Perfecto_CI.RemoteWebDriverTest.Class</mainClass>
                     </manifest>
                 </archive>
             </configuration>
