@@ -4,18 +4,9 @@ import java.net.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.html5.*;
-import org.openqa.selenium.logging.*;
 import org.openqa.selenium.remote.*;
-import org.openqa.selenium.Cookie.Builder;
 import org.openqa.selenium.Platform;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-
 /**
  * For programming samples and updated templates refer to the Perfecto GitHub at: https://github.com/PerfectoCode
  */
@@ -59,7 +50,7 @@ public class RemoteWebDriverTest {
 			Map<String, Object> params1 = new HashMap<>();
 			params1.put("content", "Sign In");
 			params1.put("timeout", "60");
-			Object result1 = driver.executeScript("mobile:checkpoint:text", params1);
+			driver.executeScript("mobile:checkpoint:text", params1);
 			
 			switchToContext(driver, "WEBVIEW");
 			driver.findElementByXPath("//*[@id=\"gmail-sign-in\"]").click();
@@ -73,6 +64,7 @@ public class RemoteWebDriverTest {
 		} finally {
 			try {
 				// Retrieve the URL of the Single Test Report, can be saved to your execution summary and used to download the report at a later point
+				@SuppressWarnings("unused")
 				String reportURL = (String)(driver.getCapabilities().getCapability(WindTunnelUtils.SINGLE_TEST_REPORT_URL_CAPABILITY));
 
 				driver.close();
@@ -99,14 +91,17 @@ public class RemoteWebDriverTest {
 		executeMethod.execute(DriverCommand.SWITCH_TO_CONTEXT, params);
 	}
 
+	@SuppressWarnings("unused")
 	private static String getCurrentContextHandle(RemoteWebDriver driver) {
 		RemoteExecuteMethod executeMethod = new RemoteExecuteMethod(driver);
 		String context =  (String) executeMethod.execute(DriverCommand.GET_CURRENT_CONTEXT_HANDLE, null);
 		return context;
 	}
 
+	@SuppressWarnings("unused")
 	private static List<String> getContextHandles(RemoteWebDriver driver) {
 		RemoteExecuteMethod executeMethod = new RemoteExecuteMethod(driver);
+		@SuppressWarnings("unchecked")
 		List<String> contexts =  (List<String>) executeMethod.execute(DriverCommand.GET_CONTEXT_HANDLES, null);
 		return contexts;
 	}
