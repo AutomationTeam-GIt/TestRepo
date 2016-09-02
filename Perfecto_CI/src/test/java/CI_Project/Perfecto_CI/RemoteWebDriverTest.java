@@ -7,12 +7,13 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.remote.*;
 import org.openqa.selenium.Platform;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 /**
  * For programming samples and updated templates refer to the Perfecto GitHub at: https://github.com/PerfectoCode
  */
 	
 public class RemoteWebDriverTest {
-
+	static RemoteWebDriver driver = null;
 	@BeforeTest
 	public static void main() throws MalformedURLException, IOException {
 		System.out.println("Run started");
@@ -32,32 +33,76 @@ public class RemoteWebDriverTest {
 		// capabilities.setCapability("automationName", "PerfectoMobile");
 
 		// Call this method if you want the script to share the devices with the Perfecto Lab plugin.
-		//PerfectoLabUtils.setExecutionIdCapability(capabilities, host);
+		PerfectoLabUtils.setExecutionIdCapability(capabilities, host);
 
-		// Add a persona to your script (see https://community.perfectomobile.com/posts/1048047-available-personas)
+		// Add a personal to your script (see https://community.perfectomobile.com/posts/1048047-available-personas)
 		//capabilities.setCapability(WindTunnelUtils.WIND_TUNNEL_PERSONA_CAPABILITY, WindTunnelUtils.GEORGIA);
 
 		// Name your script
 		// capabilities.setCapability("scriptName", "RemoteWebDriverTest");
 
-		RemoteWebDriver driver = new RemoteWebDriver(new URL("https://" + host + "/nexperience/perfectomobile/wd/hub"), capabilities);
+		driver = new RemoteWebDriver(new URL("https://" + host + "/nexperience/perfectomobile/wd/hub"), capabilities);
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-
+	}
+	
+	@Test
+	public void gphNavigation()
+	{
 		try {
-			// write your code here
-			driver.get("www.gmail.com");			
-			
+
+			// Closing all the opened windows
+			Map<String, Object> params14 = new HashMap<>();
+			params14.put("keySequence", "APP_SWITCH");
+			driver.executeScript("mobile:presskey", params14);
+
+			switchToContext(driver, "NATIVE_APP");
+			try{
+				driver.findElementByXPath("//*[@resource-id=\"com.android.systemui:id/recents_RemoveAll_button_vzw\"]").click();}
+			catch(Exception e){System.out.println("No windows opened");}
+
+
+			// Navigating to GPH site and Validating some content over there
+			switchToContext(driver, "WEBVIEW");
+			Thread.sleep(3000);
+			driver.get("https://gph-pt.accenture.com/");	
+			Thread.sleep(3000);
+
+			// Closing the Set Secure screen lock window
+			switchToContext(driver, "NATIVE_APP");
+			try{
+				driver.findElementByXPath("//*[@resource-id=\"android:id/button2\"]").click();}
+			catch(Exception e){System.out.println("No popup windows");}
+
+
 			Map<String, Object> params1 = new HashMap<>();
-			params1.put("content", "Sign In");
+			params1.put("content", "Enterprise Sign On");
 			params1.put("timeout", "60");
 			driver.executeScript("mobile:checkpoint:text", params1);
-			
+
 			switchToContext(driver, "WEBVIEW");
-			driver.findElementByXPath("//*[@id=\"gmail-sign-in\"]").click();
-			
+			driver.findElementByXPath("//*[@id=\"userNameInput\"]").sendKeys("Adtestid100");			
+			driver.findElementByXPath("//*[@id=\"passwordInput\"]").sendKeys("Rs5MtY42tghBRT7FD");		
+			driver.findElementByXPath("//*[@id=\"submitButton\"]").click();
+
+			Map<String, Object> params2 = new HashMap<>();
+			params2.put("content", "accentureoperations");
+			params2.put("timeout", "60");
+			driver.executeScript("mobile:checkpoint:text", params2);
+
+			// Log out from the application			
 			switchToContext(driver, "WEBVIEW");
-			driver.findElementByXPath("//*[@id=\"Email\"]").sendKeys("TestingGmailLogin");
-						
+			driver.findElementByXPath("//*[@id=\"gphHamburger\"]").click();
+
+
+			Thread.sleep(2000);
+			driver.findElementByXPath("//*[text()=\"Settings\"]").click();
+			Thread.sleep(2000);
+			driver.findElementByXPath("//*[@class=\"links-text-mobile\" and text()='Log-Off']").click();
+
+			Map<String, Object> params3 = new HashMap<>();
+			params3.put("content", "you have successfully logged-off");
+			params3.put("timeout", "60");
+			driver.executeScript("mobile:checkpoint:text", params3);
 
 		} catch (Exception e) {
 			e.printStackTrace();
