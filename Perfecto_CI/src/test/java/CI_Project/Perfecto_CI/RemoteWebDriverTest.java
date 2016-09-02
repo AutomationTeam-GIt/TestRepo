@@ -19,13 +19,13 @@ public class RemoteWebDriverTest {
 
 		String browserName = "mobileOS";
 		DesiredCapabilities capabilities = new DesiredCapabilities(browserName, "", Platform.ANY);
-		String host = "cloduDetails";
-		capabilities.setCapability("user", "userAccount");
+		String host = "accenturecoe.perfectomobile.com";
+		capabilities.setCapability("user", "n.kumarasamy@accenture.com");
 		capabilities.setCapability("password", "Jun@2016");
 		
 		System.out.println("Newly added");
 		//TODO: Change your device ID
-		capabilities.setCapability("deviceName", "deviceName");
+		capabilities.setCapability("deviceName", "4622C2B1");
 		System.out.println("Capabilities are set");
 
 		// Use the automationName capability to define the required framework - Appium (this is the default) or PerfectoMobile.
