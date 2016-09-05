@@ -16,7 +16,7 @@ public class RemoteWebDriverTest {
 	static RemoteWebDriver driver = null;
 
 	static GenericMethods gm = new GenericMethods();
-
+	
 	@BeforeTest
 	public static void main() throws MalformedURLException, IOException {
 		System.out.println("Run started");
