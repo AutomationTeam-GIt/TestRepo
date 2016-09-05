@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="0" name="Failed suite [Suite]">
+  <test name="Test(failed)">
+    <classes>
+      <class name="CI_Project.Perfecto_CI.RemoteWebDriverTest">
+        <methods>
+          <include name="gphNavigation"/>
+          <include name="main"/>
+        </methods>
+      </class> <!-- CI_Project.Perfecto_CI.RemoteWebDriverTest -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->

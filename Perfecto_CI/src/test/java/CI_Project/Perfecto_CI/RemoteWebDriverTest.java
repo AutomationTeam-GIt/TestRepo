@@ -14,6 +14,9 @@ import org.testng.annotations.Test;
 	
 public class RemoteWebDriverTest {
 	static RemoteWebDriver driver = null;
+
+	static GenericMethods gm = new GenericMethods();
+
 	@BeforeTest
 	public static void main() throws MalformedURLException, IOException {
 		System.out.println("Run started");
@@ -23,7 +26,7 @@ public class RemoteWebDriverTest {
 		String host = "accenturecoe.perfectomobile.com";
 		capabilities.setCapability("user", "n.kumarasamy@accenture.com");
 		capabilities.setCapability("password", "Jun@2016");
-		
+
 		System.out.println("Newly added");
 		//TODO: Change your device ID
 		capabilities.setCapability("deviceName", "4622C2B1");
@@ -43,13 +46,13 @@ public class RemoteWebDriverTest {
 
 		driver = new RemoteWebDriver(new URL("https://" + host + "/nexperience/perfectomobile/wd/hub"), capabilities);
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		gm.logScreenshot("Info", "Device is successfully launched", driver);
 	}
-	
+
 	@Test
 	public void gphNavigation()
 	{
 		try {
-
 			// Closing all the opened windows
 			Map<String, Object> params14 = new HashMap<>();
 			params14.put("keySequence", "APP_SWITCH");
@@ -66,7 +69,8 @@ public class RemoteWebDriverTest {
 			Thread.sleep(3000);
 			driver.get("https://gph-pt.accenture.com/");	
 			Thread.sleep(3000);
-
+			gm.logScreenshot("Pass", "Navigated to GPH Login page", driver);
+			
 			// Closing the Set Secure screen lock window
 			switchToContext(driver, "NATIVE_APP");
 			try{
@@ -83,26 +87,32 @@ public class RemoteWebDriverTest {
 			driver.findElementByXPath("//*[@id=\"userNameInput\"]").sendKeys("Adtestid100");			
 			driver.findElementByXPath("//*[@id=\"passwordInput\"]").sendKeys("Rs5MtY42tghBRT7FD");		
 			driver.findElementByXPath("//*[@id=\"submitButton\"]").click();
-
+			Thread.sleep(2000);
+			gm.logScreenshot("Pass", "Navigated to GPH home page", driver);
+			
+			switchToContext(driver, "NATIVE_APP");
 			Map<String, Object> params2 = new HashMap<>();
-			params2.put("content", "accentureoperations");
+			params2.put("content", "Attendance");
 			params2.put("timeout", "60");
 			driver.executeScript("mobile:checkpoint:text", params2);
 
 			// Log out from the application			
 			switchToContext(driver, "WEBVIEW");
 			driver.findElementByXPath("//*[@id=\"gphHamburger\"]").click();
-
+			gm.logScreenshot("Info", "Clicked on Hamburger Icon in the GPH Home page", driver);
 
 			Thread.sleep(2000);
 			driver.findElementByXPath("//*[text()=\"Settings\"]").click();
 			Thread.sleep(2000);
 			driver.findElementByXPath("//*[@class=\"links-text-mobile\" and text()='Log-Off']").click();
 
+			
 			Map<String, Object> params3 = new HashMap<>();
 			params3.put("content", "you have successfully logged-off");
 			params3.put("timeout", "60");
 			driver.executeScript("mobile:checkpoint:text", params3);
+			
+			gm.logScreenshot("Pass", "Successfully logged out of GPH Application", driver);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -122,10 +132,8 @@ public class RemoteWebDriverTest {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 			driver.quit();
 		}
-
 		System.out.println("Run ended");
 	}
 

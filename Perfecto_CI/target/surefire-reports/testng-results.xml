@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="148505" started-at="2016-09-02T07:30:20Z" finished-at="2016-09-02T07:32:49Z">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="148505" started-at="2016-09-02T07:30:20Z" finished-at="2016-09-02T07:32:49Z">
+      <class name="CI_Project.Perfecto_CI.RemoteWebDriverTest">
+        <test-method status="PASS" signature="main()[pri:0, instance:CI_Project.Perfecto_CI.RemoteWebDriverTest@a64e035]" name="main" is-config="true" duration-ms="10616" started-at="2016-09-02T13:00:20Z" finished-at="2016-09-02T13:00:31Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- main -->
+        <test-method status="PASS" signature="gphNavigation()[pri:0, instance:CI_Project.Perfecto_CI.RemoteWebDriverTest@a64e035]" name="gphNavigation" duration-ms="137867" started-at="2016-09-02T13:00:31Z" finished-at="2016-09-02T13:02:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- gphNavigation -->
+      </class> <!-- CI_Project.Perfecto_CI.RemoteWebDriverTest -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>
