@@ -23,13 +23,13 @@ public class RemoteWebDriverTest {
 
 		String browserName = "mobileOS";
 		DesiredCapabilities capabilities = new DesiredCapabilities(browserName, "", Platform.ANY);
-		String host = "accenturecoe.perfectomobile.com";
-		capabilities.setCapability("user", "n.kumarasamy@accenture.com");
-		capabilities.setCapability("password", "Jun@2016");
+		String host = "";
+		capabilities.setCapability("user", "");
+		capabilities.setCapability("password", "");
 
 		System.out.println("Newly added");
 		//TODO: Change your device ID
-		capabilities.setCapability("deviceName", "4622C2B1");
+		capabilities.setCapability("deviceName", "");
 		System.out.println("Capabilities are set");
 
 		// Use the automationName capability to define the required framework - Appium (this is the default) or PerfectoMobile.
@@ -84,8 +84,8 @@ public class RemoteWebDriverTest {
 			driver.executeScript("mobile:checkpoint:text", params1);
 
 			switchToContext(driver, "WEBVIEW");
-			driver.findElementByXPath("//*[@id=\"userNameInput\"]").sendKeys("Adtestid100");			
-			driver.findElementByXPath("//*[@id=\"passwordInput\"]").sendKeys("Rs5MtY42tghBRT7FD");		
+			driver.findElementByXPath("//*[@id=\"userNameInput\"]").sendKeys("");			
+			driver.findElementByXPath("//*[@id=\"passwordInput\"]").sendKeys("");		
 			driver.findElementByXPath("//*[@id=\"submitButton\"]").click();
 			Thread.sleep(2000);
 			gm.logScreenshot("Pass", "Navigated to GPH home page", driver);
