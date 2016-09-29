@@ -5,5 +5,6 @@ public class ClassName1 {
 		// TODO Auto-generated method stub
 		System.out.println("The program is created");
 		System.out.println("The program is created");	
+		System.out.println("The program is created");
 	}
 }
